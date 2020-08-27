@@ -175,7 +175,7 @@ UCrewOwnershipComponent AShip::GetCrewOwnershipComponent()
 
 uintptr_t AShip::GetOwningActor()
 {
-	return *(uintptr_t*)(__pad0x0 + 0x410);
+	return *(uintptr_t*)(__pad0x0 + 0x468); //2.0.17.2
 }
 
 TArray<struct FXMarksTheSpotMapMark> AXMarksTheSpotMap::GetMarks()
@@ -233,15 +233,19 @@ TArray<struct Vector2> AMapTable::GetMapPins()
 	return *(TArray<struct Vector2>*)(__pad0x0 + Offsets.AMapTable.MapPins);
 }
 
+// credits: shynd <3
 TArray<class FWorldMapShipLocation> AMapTable::GetTrackedShips()
 {
-	return *(TArray<class FWorldMapShipLocation>*)(__pad0x0 + Offsets.AMapTable.TrackedShips);
+	//return *(TArray<class FWorldMapShipLocation>*)(__pad0x0 + Offsets.AMapTable.TrackedShips);
+	return *(TArray<class FWorldMapShipLocation>*)(__pad0x0 + Offsets.AMapTable.MapPins + 0x10);
 }
 
 TArray<struct Vector3> AMapTable::GetTrackedBootyItemLocations()
 {
-	return *(TArray<struct Vector3>*)(__pad0x0 + 0x0500);
+	//return *(TArray<struct Vector3>*)(__pad0x0 + 0x0500);
+	return *(TArray<struct Vector3>*)(__pad0x0 + Offsets.AMapTable.MapPins + 0x20);
 }
+//
 
 TArray<struct FIsland> AIslandService::GetIslandArray()
 {
